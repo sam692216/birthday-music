@@ -3,65 +3,364 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#183d37">
-  <meta name="description" content="生日專屬的生命靈數能量祝福與音樂點播卡。">
-  <title>生日快樂｜生命靈數能量 DJ</title>
-  <link rel="preload" as="image" href="assets/hero.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="data.js" defer></script>
-  <script src="app.js" defer></script>
+  <meta name="theme-color" content="#f5f0e7">
+  <meta name="description" content="給 11 月 1 日壽星的生命靈數生日賀卡與 2026 流年 4 能量 DJ 點播歌單。">
+  <title>11月1日生日快樂｜生日數1 × 2026流年4</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #24352f;
+      --muted: #63716a;
+      --paper: #fbf8f1;
+      --cream: #f0e9db;
+      --green: #31594b;
+      --green-dark: #1f3d34;
+      --orange: #bf754d;
+      --gold: #d6ad76;
+      --line: #ddd2bf;
+      --white: #fffefa;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 85% 5%, rgba(214,173,118,.19), transparent 30rem),
+        linear-gradient(180deg, #f7f2e9, #f1ede4 55%, #f8f5ee);
+    }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    .page { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin: 24px auto 30px;
+      min-height: 480px;
+      border: 1px solid rgba(49,89,75,.16);
+      border-radius: 30px;
+      background: #e8ede3;
+      box-shadow: 0 20px 60px rgba(46,58,49,.08);
+    }
+    .hero-image {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 56%;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(247,242,233,.83) 0%, rgba(247,242,233,.68) 48%, rgba(247,242,233,.2) 100%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "4";
+      position: absolute;
+      z-index: 1;
+      right: 33%;
+      bottom: -150px;
+      color: rgba(49,89,75,.055);
+      font: 800 clamp(22rem, 38vw, 34rem)/1 Georgia, serif;
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(230px, .65fr);
+      align-items: center;
+      gap: 30px;
+      min-height: inherit;
+      padding: clamp(30px, 6vw, 72px);
+    }
+    .eyebrow {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+    }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      color: var(--green-dark);
+      font-size: clamp(2.15rem, 5.2vw, 4.3rem);
+      line-height: 1.16;
+      letter-spacing: .015em;
+    }
+    .hero-quote {
+      max-width: 700px;
+      margin: 20px 0 22px;
+      color: #4a5d51;
+      font-size: clamp(1.08rem, 2.3vw, 1.45rem);
+      line-height: 1.75;
+    }
+    .number-tag {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 7px 12px;
+      max-width: 100%;
+      padding: 10px 14px;
+      border: 1px solid rgba(49,89,75,.2);
+      border-radius: 12px;
+      background: rgba(255,254,250,.78);
+      font-size: .95rem;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+    .keywords { margin: 18px 0 0; color: var(--muted); line-height: 1.8; }
+    .blackboard {
+      justify-self: center;
+      width: min(100%, 290px);
+      padding: 28px 20px 24px;
+      border: 9px solid #987653;
+      border-radius: 13px;
+      background: #243c32;
+      box-shadow: 0 15px 25px rgba(37,48,40,.18), inset 0 0 0 1px rgba(255,255,255,.13);
+      color: #f6f0df;
+      text-align: center;
+      transform: rotate(1deg);
+    }
+    .blackboard p { margin: 0; font-family: "DFKai-SB", "KaiTi", serif; font-size: 1.3rem; font-weight: 700; line-height: 1.8; }
+    .blackboard small { display: block; margin-top: 19px; font: 700 .68rem/1.6 "Microsoft JhengHei", sans-serif; letter-spacing: .12em; }
+    .section { margin: 28px 0; padding: clamp(22px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: rgba(255,254,250,.87); box-shadow: 0 12px 35px rgba(53,59,49,.045); }
+    .section-kicker { margin: 0 0 8px; color: var(--orange); font-size: .78rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { color: var(--green-dark); }
+    .section h2 { margin: 0 0 16px; font-size: clamp(1.45rem, 3.4vw, 2.1rem); }
+    .annual { max-width: 860px; margin: 0; color: #505e55; font-size: 1.06rem; line-height: 1.95; }
+    .annual-question { margin: 24px 0 0; padding: 18px 20px; border-left: 4px solid var(--orange); border-radius: 0 14px 14px 0; background: #f5efe4; font-size: 1.08rem; font-weight: 700; line-height: 1.75; }
+    .mode-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+    .mode {
+      min-height: 110px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: #fbf8f1;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+    .mode:hover { transform: translateY(-2px); border-color: var(--green); }
+    .mode:focus-visible, .action:focus-visible, .song-link:focus-visible { outline: 3px solid #bf754d; outline-offset: 3px; }
+    .mode[aria-pressed="true"] { border: 2px solid var(--green); background: #edf2e9; box-shadow: 0 7px 18px rgba(49,89,75,.09); }
+    .mode strong { display: block; color: var(--green-dark); font-size: 1.02rem; line-height: 1.5; }
+    .mode span { display: block; margin-top: 6px; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+    .now-playing { display: grid; grid-template-columns: 1.05fr .95fr; overflow: hidden; margin-top: 22px; border-radius: 20px; }
+    .reflection { padding: clamp(23px, 4vw, 36px); background: var(--green); color: white; }
+    .reflection-label, .playing-label { font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
+    .reflection h3 { margin: 17px 0 12px; font-size: clamp(1.28rem, 2.7vw, 1.85rem); line-height: 1.6; }
+    .reflection p { margin: 0; color: rgba(255,255,255,.88); line-height: 1.8; }
+    .track { padding: clamp(23px, 4vw, 36px); background: #f3ecdf; }
+    .playing-label { color: var(--orange); }
+    .track h3 { margin: 16px 0 8px; color: var(--green-dark); font-size: 1.6rem; }
+    .track p { min-height: 3.4em; color: #5e675f; line-height: 1.75; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; }
+    .action { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 11px 17px; border: 1px solid transparent; border-radius: 999px; background: var(--orange); color: white; font-weight: 800; text-decoration: none; cursor: pointer; touch-action: manipulation; transition: transform .16s ease, background-color .16s ease; }
+    .action:hover { transform: translateY(-1px); background: #a95f3c; }
+    .action.secondary { border-color: #d5c2a7; background: var(--white); color: var(--green-dark); }
+    .status { min-height: 1.5em; margin: 8px 0 0; color: var(--green); font-size: .9rem; }
+    .playlist { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; padding: 0; margin: 20px 0 0; list-style: none; }
+    .song-link { display: flex; min-height: 62px; align-items: center; gap: 13px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 14px; background: #fcfaf5; text-decoration: none; transition: border-color .18s ease, background-color .18s ease; }
+    .song-link:hover { border-color: var(--green); background: #f1f3eb; }
+    .song-number { flex: 0 0 28px; color: var(--orange); font: 800 1.05rem Georgia,serif; }
+    .song-text strong { display: block; color: var(--green-dark); line-height: 1.45; }
+    .song-text small { display: block; margin-top: 3px; color: var(--muted); line-height: 1.4; }
+    .note { margin: 18px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.75; }
+    .closing { margin: 28px 0 44px; padding: 26px clamp(20px,4vw,38px); border-radius: 22px; background: #e6ebe1; color: #385346; line-height: 1.9; }
+    .closing strong { color: var(--green-dark); }
+    footer { padding: 0 0 32px; color: #7c817a; font-size: .82rem; text-align: center; }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr) 230px; gap: 20px; padding: 36px; }
+      .blackboard { width: 225px; padding: 23px 15px; }
+      .blackboard p { font-size: 1.13rem; }
+      .hero::after { right: 24%; }
+    }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 24px, 560px); }
+      .hero { margin-top: 12px; border-radius: 22px; }
+      .hero-image { object-position: 67% center; }
+      .hero::before { background: linear-gradient(180deg, rgba(247,242,233,.78), rgba(247,242,233,.63)); }
+      .hero-grid { grid-template-columns: 1fr; gap: 23px; padding: 28px 22px; }
+      .hero::after { right: -25px; bottom: -90px; font-size: 20rem; }
+      .hero-copy { text-align: center; }
+      .hero-quote { margin-inline: auto; }
+      .number-tag { justify-content: center; }
+      .blackboard { width: min(100%, 270px); }
+      .mode-grid { grid-template-columns: 1fr; gap: 10px; }
+      .mode { min-height: 76px; padding: 14px 16px; }
+      .now-playing { grid-template-columns: 1fr; }
+      .playlist { grid-template-columns: 1fr; }
+      .track p { min-height: auto; }
+      .section { border-radius: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="生命靈數生日能量 DJ 首頁"><span class="brand-mark">AF</span><span>阿福教練・生日能量 DJ</span></a>
-    <span class="top-note">一份祝福，陪你開啟新的一歲</span>
-  </header>
-
-  <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <img id="hero-image" class="hero-image" src="assets/hero.png" alt="">
-      <div class="hero-shade"></div>
-      <div class="hero-copy">
-        <p class="eyebrow" id="date-eyebrow"></p>
-        <p class="number-label" id="number-label"></p>
-        <h1 id="hero-title"></h1>
-        <div class="keyword-row"><span id="birthday-keywords"></span><span class="keyword-divider">×</span><span id="flow-keywords"></span></div>
-        <div class="blackboard"><span class="board-kicker">TODAY’S BIRTHDAY NOTE</span><p id="board-quote"></p></div>
-      </div>
-      <div class="hero-signature" id="signature"></div>
-      <div class="hero-index" aria-hidden="true"><span>ENERGY</span><strong id="flow-number"></strong></div>
-    </section>
-
-    <section class="annual section-wrap" aria-labelledby="annual-heading">
-      <div class="section-heading"><p class="eyebrow dark">YOUR YEAR, YOUR RHYTHM</p><h2 id="annual-heading">今年，為自己留一個新的可能</h2></div>
-      <div class="annual-grid">
-        <article class="annual-note"><span class="note-icon" aria-hidden="true">✦</span><div><h3>年度提醒</h3><p id="annual-reminder"></p></div></article>
-        <article class="annual-question"><span class="question-label">今天送給自己的提問</span><p id="annual-question"></p></article>
+  <main class="page">
+    <section class="hero" aria-labelledby="birthday-title">
+      <img class="hero-image" src="assets/hero_1101.png" alt="初冬清晨微光灑落在實木書桌上，手帳本、復古鋼筆與熱咖啡，象徵踏實扎根與自主開創。" fetchpriority="high">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">NOVEMBER 01 · A GROUNDED NEW DAWN</p>
+          <h1 id="birthday-title">11/01 壽星<br>生日快樂</h1>
+          <p class="hero-quote">「有開創的勇氣，也在扎根中築起厚實堡壘。」</p>
+          <div class="number-tag">
+            <span>生日數 1（開創・自主・引領・啟動）</span>
+            <span aria-hidden="true">×</span>
+            <span>2026 流年 4（建立・規律・基礎・穩固）</span>
+          </div>
+          <p class="keywords">生日數能量：開創・自主・引領・啟動<br>流年 4 主題：建立・規律・基礎・穩固</p>
+        </div>
+        <aside class="blackboard" aria-label="阿福教練生日祝福立牌">
+          <p>有開創的勇氣，<br>也在扎根中<br>築起厚實堡壘。</p>
+          <small>阿福教練<br>LIFE NUMEROLOGY COACH</small>
+        </aside>
       </div>
     </section>
 
-    <section class="choose section-wrap" aria-labelledby="choose-heading">
-      <div class="section-heading"><p class="eyebrow dark">PICK YOUR MOMENT</p><h2 id="choose-heading">此刻，你想為自己補充哪一種能量？</h2><p class="section-intro">選一個最貼近現在心情的情境，聽聽專屬問候與歌曲。</p></div>
-      <div class="scenario-grid" id="scenario-list" role="group" aria-label="選擇生日能量情境"></div>
+    <!-- 深度流年專題區塊 (100% 吻合 10/25 深度) -->
+    <section class="section" aria-labelledby="year-heading">
+      <p class="section-kicker">A YEAR TO BUILD AND CONSOLIDATE</p>
+      <h2 id="year-heading">在踏實扎根中，築起無可替代的人生代表作</h2>
+      <p class="annual">迎向 2026 流年 4 的穩固扎根期，宇宙想為你的開創才華築起最堅固的城堡：不要讓過多的雄心壯志懸空變成焦慮，今年正是你把崇高理念「落地化為具體制度與代表作」的黃金年！建立清晰規律的作息、把一件關鍵大事做深做透。有厚實的地基支撐，你的開創勇氣才能真正轉化為長長久久的豐盛實力。</p>
+      <p class="annual-question">年度提問｜「在想開創的大目標之前，我今天最想為自己打下的第一塊基石是什麼？」</p>
+    </section>
+
+    <!-- 能量 DJ 情境切換區塊 -->
+    <section class="section" aria-labelledby="dj-heading">
+      <p class="section-kicker">YOUR ENERGY DJ</p>
+      <h2 id="dj-heading">今天想用哪一種方式，為自己注入扎根力量？</h2>
+      <div class="mode-grid" role="group" aria-label="選擇今天的心情情境">
+        <button class="mode" type="button" data-mode="grounding" aria-pressed="true">
+          <strong>🏛️ 為理想打下基石</strong><span>把遠大企圖心，化成可落地的規律習慣。</span>
+        </button>
+        <button class="mode" type="button" data-mode="focus" aria-pressed="false">
+          <strong>☕ 專注核心代表作</strong><span>不分心於雜音，深耕一件真正重要的事。</span>
+        </button>
+        <button class="mode" type="button" data-mode="harmony" aria-pressed="false">
+          <strong>🌅 從容迎接新晨曦</strong><span>內心安定，步履自然從容優雅。</span>
+        </button>
+      </div>
+
       <div class="now-playing" aria-live="polite">
-        <div class="greeting-panel"><span class="panel-label">今日靈數問候</span><blockquote id="greeting"></blockquote><p id="guide"></p><p class="action-line" id="action-line"></p></div>
-        <div class="song-panel"><span class="playing-label"><span class="playing-dot"></span> NOW PLAYING</span><p class="song-context" id="song-context"></p><h3 id="song-title"></h3><p class="song-artist" id="song-artist"></p><p class="song-reason" id="song-reason"></p><div class="button-row"><a id="play-link" class="button button-primary" target="_blank" rel="noopener noreferrer">▶ 點播歌曲</a><button id="copy-button" class="button button-light" type="button">複製祝福</button></div><p class="search-note">將開啟 YouTube 搜尋結果，請依喜好選擇版本。</p></div>
+        <div class="reflection">
+          <span class="reflection-label">今日靈數問候</span>
+          <h3 id="question">「在想開創的大目標之前，我今天最想為自己打下的第一塊基石是什麼？」</h3>
+          <p id="guidance">開創不只是向前衝，更是為自己建立一套能長治久安的秩序。每天踏實前進一小步，成果自會水到渠成。</p>
+        </div>
+        <div class="track">
+          <span class="playing-label">NOW PLAYING · 今日點播</span>
+          <h3 id="song">〈向前走〉</h3>
+          <p id="reason">以生日數 1 的開創魄力，結合流年 4 的穩健步伐，勇敢邁出最扎實的第一步。</p>
+          <div class="actions">
+            <a id="play" class="action" href="https://www.youtube.com/results?search_query=%E6%9E%97%E5%BC%B7+%E5%90%91%E5%89%8D%E8%B5%B0+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer">▶ 點播歌曲</a>
+            <button id="copy" class="action secondary" type="button">複製祝福</button>
+          </div>
+          <p id="copy-status" class="status" role="status" aria-live="polite"></p>
+        </div>
       </div>
     </section>
 
-    <section class="playlist section-wrap" aria-labelledby="playlist-heading">
-      <div class="playlist-heading"><div><p class="eyebrow dark">THE BIRTHDAY PLAYLIST</p><h2 id="playlist-heading">今日能量歌單</h2></div><p>每首歌都是一個陪伴你的角度<br>點選即可用 YouTube 搜尋</p></div>
-      <div class="track-list" id="track-list"></div>
+    <!-- 1 號人課堂專屬歌單 (帶編號與深度導聆) -->
+    <section class="section" aria-labelledby="playlist-heading">
+      <p class="section-kicker">LIFE NUMBER 1 · CLASSROOM PLAYLIST</p>
+      <h2 id="playlist-heading">1 號人課堂激勵與歡唱歌單</h2>
+      <p class="annual">從獨立自主、引領開拓與目標感出發，把企圖心化為踏實落地的行動；也把規律與耐心留給自己，讓勇氣在地基上綻放光彩。</p>
+      <ol class="playlist">
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E6%9E%97%E5%BC%B7+%E5%90%91%E5%89%8D%E8%B5%B0+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer"><span class="song-number">01</span><span class="song-text"><strong>向前走</strong><small>林強｜開創與行動・勇敢邁出踏實第一步（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E4%BA%94%E6%9C%88%E5%A4%A9+%E9%A0%91%E5%9B%BA+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer"><span class="song-number">02</span><span class="song-text"><strong>頑固</strong><small>五月天｜專注堅持・深耕屬於你的代表作（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E4%BA%94%E6%9C%88%E5%A4%A9+%E6%88%90%E5%90%8D%E5%9C%A8%E6%9C%9B+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer"><span class="song-number">03</span><span class="song-text"><strong>成名在望</strong><small>五月天｜願景定錨・把企圖心化為長遠成果（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E5%BC%B5%E9%9B%A8%E7%94%9F+%E6%88%91%E7%9A%84%E6%9C%AA%E4%BE%86%E4%B8%8D%E6%98%AF%E5%A4%A2+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer"><span class="song-number">04</span><span class="song-text"><strong>我的未來不是夢</strong><small>張雨生｜把理想化為下一步具體行動（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E4%BA%94%E6%9C%88%E5%A4%A9+%E6%86%A8%E4%BA%BA+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer"><span class="song-number">05</span><span class="song-text"><strong>憨人</strong><small>五月天｜純粹熱忱・堅持把一件大事做好（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E6%BB%85%E7%81%AB%E5%99%A8+%E5%B3%B6%E5%B6%BC%E5%A4%A9%E5%85%89+%E5%AE%98%E6%96%B9" target="_blank" rel="noopener noreferrer"><span class="song-number">06</span><span class="song-text"><strong>島嶼天光</strong><small>滅火器｜信念與集體力量・照亮前行方向（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E7%BE%85%E5%A4%A7%E4%BD%91+%E7%BE%8E%E9%BA%97%E5%B3%B6+%E5%AE%98%E6%96%B9" target="_blank" rel="noopener noreferrer"><span class="song-number">07</span><span class="song-text"><strong>美麗島</strong><small>羅大佑｜深邃扎根・在土地上耕耘初心（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E7%BE%A4%E6%98%9F+%E6%98%8E%E5%A4%A9%E6%9C%83%E6%9B%B4%E5%A5%BD+%E5%AE%98%E6%96%B9+MV" target="_blank" rel="noopener noreferrer"><span class="song-number">08</span><span class="song-text"><strong>明天會更好</strong><small>群星｜共同希望・從容自信邁向下個階段（YouTube 搜尋）</small></span></a></li>
+      </ol>
+      <p class="note">歌單依《生命靈數1號人_課堂激勵與歡唱點播歌單》整理。點播連結均為 YouTube 官方影音搜尋結果；播放時請依授課場地與著作權規範使用。</p>
     </section>
+
+    <section class="closing">
+      <strong>🎉 祝 11/01 的你生日快樂！</strong><br>
+      願你的勇敢穩穩著陸，在踏實深耕中開創出璀璨代表作。<br>
+      👉 11/01 壽星快來留言【🏛️】！為新的一歲打下最堅實的人生基石！<br>
+      <span>#11月1日生日快樂 #生命靈數 #生日數1 #流年4 #扎根落地 #人生代表作 #阿福教練</span>
+    </section>
+    <footer>阿福教練｜生命靈數能量提醒・生日 DJ 點播站</footer>
   </main>
 
-  <footer class="footer">
-    <p class="footer-wish" id="footer-wish"></p>
-    <p class="footer-sign" id="footer-signature"></p>
-    <button id="share-button" class="button button-primary" type="button">複製生日祝福・分享給好友</button>
-    <p class="footer-small">生命靈數作為正向自我覺察與祝福參考；願你自在地選擇自己的步調。</p>
-  </footer>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <textarea id="copy-fallback" class="copy-fallback" aria-hidden="true" tabindex="-1"></textarea>
+  <script>
+    const scenarios = {
+      grounding: {
+        question: '「在想開創的大目標之前，我今天最想為自己打下的第一塊基石是什麼？」',
+        guidance: '開創不只是向前衝，更是為自己建立一套能長治久安的秩序。每天踏實前進一小步，成果自會水到渠成。',
+        song: '〈向前走〉',
+        reason: '以生日數 1 的開創魄力，結合流年 4 的穩健步伐，勇敢邁出最扎實的第一步。',
+        url: 'https://www.youtube.com/results?search_query=%E6%9E%97%E5%BC%B7+%E5%90%91%E5%89%8D%E8%B5%B0+%E5%AE%98%E6%96%B9+MV',
+        blessing: '11/01 生日快樂！願你的勇敢穩穩著陸，把崇高的理想落地化為真實成就，在踏實前行中收穫滿滿的安定與豐盛。'
+      },
+      focus: {
+        question: '「在那麼多待辦事項裡，哪一件才是我今年最想留下的代表作？」',
+        guidance: '減少無效社交與心力分散，將所有才華集中灌注在核心領域，你會看見無可替代的高度。',
+        song: '〈頑固〉',
+        reason: '頑固的堅持正是流年 4 扎根的靈魂，守護心中最初的勇敢與熱情。',
+        url: 'https://www.youtube.com/results?search_query=%E4%BA%94%E6%9C%88%E5%A4%A9+%E9%A0%91%E5%9B%BA+%E5%AE%98%E6%96%B9+MV',
+        blessing: '11/01 生日快樂！願你守護內心最純粹的初心，耐得住寂寞與深耕，創造出讓自己深深驕傲的人生代表作。'
+      },
+      harmony: {
+        question: '「如果不再感到急躁，我現在最想如何自在地生活？」',
+        guidance: '給予時間一點耐心，當你的地基打得夠深，高樓自然平地起。內心安定，步履自然從容。',
+        song: '〈明天會更好〉',
+        reason: '用溫暖大合唱收束開創新局的從容自信，相信未來必定繁盛開展。',
+        url: 'https://www.youtube.com/results?search_query=%E7%BE%A4%E6%98%9F+%E6%98%8E%E5%A4%A9%E6%9C%83%E6%9B%B4%E5%A5%BD+%E5%AE%98%E6%96%B9+MV',
+        blessing: '11/01 生日快樂！願你步履從容、眼中有光，在屬於自己的節奏中優雅前行，迎接更加璀璨的新階段。'
+      }
+    };
+
+    const byId = id => document.getElementById(id);
+    let selectedMode = 'grounding';
+    const modeButtons = [...document.querySelectorAll('.mode[data-mode]')];
+
+    function chooseMode(mode) {
+      const scenario = scenarios[mode];
+      if (!scenario) return;
+      selectedMode = mode;
+      modeButtons.forEach(button => {
+        const selected = button.dataset.mode === mode;
+        button.setAttribute('aria-pressed', String(selected));
+      });
+      byId('question').textContent = scenario.question;
+      byId('guidance').textContent = scenario.guidance;
+      byId('song').textContent = scenario.song;
+      byId('reason').textContent = scenario.reason;
+      byId('play').href = scenario.url;
+      byId('copy-status').textContent = '';
+    }
+
+    modeButtons.forEach(button => {
+      button.addEventListener('click', () => chooseMode(button.dataset.mode));
+    });
+
+    byId('copy').addEventListener('click', async () => {
+      const blessing = scenarios[selectedMode].blessing;
+      try {
+        await navigator.clipboard.writeText(blessing);
+        byId('copy-status').textContent = '祝福文案已複製，可以貼到 LINE 或 FB 分享。';
+      } catch {
+        window.prompt('請複製以下生日祝福：', blessing);
+      }
+    });
+  </script>
 </body>
 </html>
