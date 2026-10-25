@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>阿福教練 11 月份日雜手帳生日賀卡生成器</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Caveat:wght@600;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #2b2622;
+      font-family: 'Noto Serif TC', -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #2b1710;
+    }
+
+    .card-canvas {
+      position: relative;
+      overflow: hidden;
+      background: #fbf8f1;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 4:5 貼文版 (1200 x 1500) */
+    .mode-post {
+      width: 1200px;
+      height: 1500px;
+    }
+
+    /* 9:16 限動版 (1080 x 1920) */
+    .mode-story {
+      width: 1080px;
+      height: 1920px;
+    }
+
+    /* 底層高質感生活美學實景 (CSS 繪製秋末初冬質感場景) */
+    .bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.1) brightness(0.98);
+    }
+
+    /* 半透明和紙質感遮罩 (留白日雜感) */
+    .paper-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(253, 250, 244, 0.96) 0%,
+        rgba(253, 250, 244, 0.93) 48%,
+        rgba(253, 250, 244, 0.82) 75%,
+        rgba(253, 250, 244, 0.45) 100%
+      );
+      z-index: 2;
+    }
+
+    .sun-flare {
+      position: absolute;
+      top: -80px;
+      right: 15%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(255, 225, 150, 0.35) 0%, rgba(255, 200, 120, 0.12) 50%, transparent 70%);
+      z-index: 3;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* 內容容器 */
+    .content-wrap {
+      position: relative;
+      z-index: 4;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 70px 80px;
+    }
+
+    .mode-story .content-wrap {
+      padding: 100px 75px 80px;
+    }
+
+    /* 頂部日期與手帳標籤 */
+    .top-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .meta-tag {
+      background: #8c5836;
+      color: #fff;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 5px 16px;
+      border-radius: 4px;
+      font-family: 'Caveat', 'Noto Serif TC', serif;
+    }
+
+    .meta-date {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      color: #7a5035;
+      text-transform: uppercase;
+    }
+
+    /* 主標金句 */
+    .main-title {
+      font-size: 50px;
+      font-weight: 900;
+      line-height: 1.35;
+      color: #1f3d34;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .mode-story .main-title {
+      font-size: 52px;
+      margin-bottom: 30px;
+    }
+
+    /* 靈數密碼標籤膠囊 */
+    .capsule-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(190, 160, 130, 0.45);
+      border-radius: 14px;
+      padding: 16px 26px;
+      box-shadow: 0 8px 24px rgba(60, 40, 20, 0.05);
+      margin-bottom: 34px;
+      width: fit-content;
+    }
+
+    .capsule-label {
+      font-size: 15px;
+      font-weight: 800;
+      color: #bf754d;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .capsule-val {
+      font-size: 21px;
+      font-weight: 700;
+      color: #24352f;
+    }
+
+    .capsule-divider {
+      width: 1px;
+      height: 38px;
+      background: rgba(190, 160, 130, 0.4);
+    }
+
+    /* 中間立體雙欄提醒卡 */
+    .dual-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(210, 185, 160, 0.5);
+      border-radius: 18px;
+      padding: 30px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      box-shadow: 0 12px 36px rgba(40, 30, 20, 0.06);
+      margin-bottom: 36px;
+      max-width: 900px;
+    }
+
+    .reminder-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .row-icon {
+      flex: 0 0 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #edf2e9;
+      color: #31594b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .row-content h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #31594b;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .row-content p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #4a5d51;
+      font-weight: 500;
+    }
+
+    .question-box {
+      border-left: 4px solid #bf754d;
+      background: #fbf6ee;
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      font-size: 21px;
+      font-weight: 700;
+      color: #2b1710;
+      line-height: 1.5;
+    }
+
+    /* 右側手寫黑板立牌 (日雜標誌性手作感) */
+    .chalkboard {
+      position: absolute;
+      right: 70px;
+      top: 240px;
+      width: 250px;
+      padding: 24px 18px;
+      background: #243c32;
+      border: 7px solid #987653;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      color: #f7ede0;
+      text-align: center;
+      transform: rotate(2deg);
+      z-index: 10;
+    }
+
+    .mode-story .chalkboard {
+      top: 360px;
+      right: 60px;
+    }
+
+    .chalkboard p {
+      font-family: 'Caveat', 'Noto Serif TC', serif;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .chalkboard small {
+      display: block;
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #d6ad76;
+    }
+
+    /* 底部能量音樂夾專屬預告條 (11 月核心亮點！) */
+    .music-bar {
+      margin-top: auto;
+      background: #edf2e9;
+      border: 1px solid rgba(49, 89, 75, 0.25);
+      border-radius: 14px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+    }
+
+    .music-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .disc-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #31594b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      animation: rotate 10s linear infinite;
+    }
+
+    .music-text h5 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #1f3d34;
+      margin-bottom: 3px;
+    }
+
+    .music-text p {
+      font-size: 15px;
+      color: #63716a;
+      font-weight: 600;
+    }
+
+    .music-badge {
+      background: #bf754d;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* 右下角阿福教練浮水印 */
+    .coach-signature {
+      position: absolute;
+      right: 70px;
+      bottom: 50px;
+      z-index: 15;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(30, 22, 17, 0.78);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(235, 205, 170, 0.5);
+      border-radius: 30px;
+      padding: 8px 20px 8px 14px;
+      color: #fff;
+    }
+
+    .coach-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #bf754d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    .coach-name {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-canvas mode-post" id="cardCanvas">
+    <div class="bg-layer" id="bgLayer"></div>
+    <div class="paper-overlay"></div>
+    <div class="sun-flare"></div>
+
+    <!-- 右側小立牌 -->
+    <aside class="chalkboard">
+      <p id="boardQuote">有開創的勇氣，<br>也在扎根中築起厚實堡壘。</p>
+      <small>阿福教練・生日祝福</small>
+    </aside>
+
+    <div class="content-wrap">
+      <div class="top-meta">
+        <span class="meta-tag" id="dateTag">11月1日</span>
+        <span class="meta-date" id="dateEyebrow">NOVEMBER 01 · A GROUNDED NEW DAWN</span>
+      </div>
+
+      <h1 class="main-title" id="headline">有開創的勇氣，<br>也在扎根中築起厚實堡壘。</h1>
+
+      <div class="capsule-box">
+        <div>
+          <div class="capsule-label">生日數能量</div>
+          <div class="capsule-val" id="birthdayKeywords">開創・自主・引領・啟動</div>
+        </div>
+        <div class="capsule-divider"></div>
+        <div>
+          <div class="capsule-label" id="flowLabel">2026 流年 4 主題</div>
+          <div class="capsule-val" id="flowKeywords">建立・規律・基礎・穩固</div>
+        </div>
+      </div>
+
+      <div class="dual-card">
+        <div class="reminder-row">
+          <div class="row-icon">★</div>
+          <div class="row-content">
+            <h4>年度能量指引</h4>
+            <p id="reminder">今年走入流年 4 的【建立】節奏。不要讓崇高的願景懸空，把你的企圖心化為規律的生活節奏與踏實的代表作，穩健打下未來九年的堅固地基。</p>
+          </div>
+        </div>
+        <div class="question-box" id="annualQuestion">
+          年度提問｜「在想開創的大目標之前，我今天最想為自己打下的第一塊基石是什麼？」
+        </div>
+      </div>
+
+      <!-- 11 月全新升級：能量音樂夾點播提示條 -->
+      <div class="music-bar">
+        <div class="music-left">
+          <div class="disc-icon">🎧</div>
+          <div class="music-text">
+            <h5>今日專屬・能量 DJ 點播夾</h5>
+            <p id="musicSub">為你精選 4 首轉化能量歌單 ｜ 留言區點播</p>
+          </div>
+        </div>
+        <div class="music-badge">▶ 專屬點播站</div>
+      </div>
+    </div>
+
+    <!-- 右下角簽名 -->
+    <div class="coach-signature">
+      <div class="coach-avatar">福</div>
+      <div class="coach-name">阿福教練</div>
+    </div>
+  </div>
+
+  <script src="november_week1_data.js"></script>
+  <script>
+    function renderCard(dayId, mode) {
+      const item = NOVEMBER_WEEK1_DATA.find(d => d.dayId === dayId);
+      if (!item) return;
+
+      const canvas = document.getElementById('cardCanvas');
+      canvas.className = `card-canvas mode-${mode}`;
+
+      document.getElementById('dateTag').innerText = item.dateFormatted;
+      document.getElementById('dateEyebrow').innerText = item.dateEyebrow;
+      document.getElementById('headline').innerHTML = item.headline.replace('，', '，<br>');
+      document.getElementById('birthdayKeywords').innerText = item.birthdayKeywords;
+      document.getElementById('flowLabel').innerText = `2026 流年 ${item.flow} 主題`;
+      document.getElementById('flowKeywords').innerText = item.flowKeywords;
+      document.getElementById('reminder').innerText = item.reminder;
+      document.getElementById('annualQuestion').innerText = `年度提問｜${item.annualQuestion}`;
+      document.getElementById('boardQuote').innerHTML = item.boardQuote.replace('\n', '<br>');
+      document.getElementById('musicSub').innerText = `精選《${item.tracks[0].song}》等 4 首能量主題曲 ｜ 留言區點播`;
+
+      // 初冬實景漸層背景
+      const gradients = {
+        1101: 'linear-gradient(135deg, #c9935f 0%, #7d583b 50%, #3e281b 100%)',
+        1102: 'linear-gradient(135deg, #6c8a77 0%, #3a5c4c 50%, #1e362c 100%)',
+        1103: 'linear-gradient(135deg, #d49a6a 0%, #9e5b38 50%, #542c16 100%)',
+        1104: 'linear-gradient(135deg, #5b7382 0%, #354a57 50%, #1a2730 100%)',
+        1105: 'linear-gradient(135deg, #cba158 0%, #8c682a 50%, #473210 100%)',
+        1106: 'linear-gradient(135deg, #a67c6d 0%, #6d4a3e 50%, #39221b 100%)',
+        1107: 'linear-gradient(135deg, #4d6d63 0%, #2b4940 50%, #132721 100%)'
+      };
+      document.getElementById('bgLayer').style.background = gradients[dayId] || gradients[1101];
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const day = urlParams.get('day') || '1101';
+    const mode = urlParams.get('mode') || 'post';
+    renderCard(day, mode);
+  </script>
+</body>
+</html>

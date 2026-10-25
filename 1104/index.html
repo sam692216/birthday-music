@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d37">
+  <meta name="description" content="生日專屬的生命靈數能量祝福與音樂點播卡。">
+  <title>生日快樂｜生命靈數能量 DJ</title>
+  <link rel="preload" as="image" href="assets/hero.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="生命靈數生日能量 DJ 首頁"><span class="brand-mark">AF</span><span>阿福教練・生日能量 DJ</span></a>
+    <span class="top-note">一份祝福，陪你開啟新的一歲</span>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <img id="hero-image" class="hero-image" src="assets/hero.png" alt="">
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="eyebrow" id="date-eyebrow"></p>
+        <p class="number-label" id="number-label"></p>
+        <h1 id="hero-title"></h1>
+        <div class="keyword-row"><span id="birthday-keywords"></span><span class="keyword-divider">×</span><span id="flow-keywords"></span></div>
+        <div class="blackboard"><span class="board-kicker">TODAY’S BIRTHDAY NOTE</span><p id="board-quote"></p></div>
+      </div>
+      <div class="hero-signature" id="signature"></div>
+      <div class="hero-index" aria-hidden="true"><span>ENERGY</span><strong id="flow-number"></strong></div>
+    </section>
+
+    <section class="annual section-wrap" aria-labelledby="annual-heading">
+      <div class="section-heading"><p class="eyebrow dark">YOUR YEAR, YOUR RHYTHM</p><h2 id="annual-heading">今年，為自己留一個新的可能</h2></div>
+      <div class="annual-grid">
+        <article class="annual-note"><span class="note-icon" aria-hidden="true">✦</span><div><h3>年度提醒</h3><p id="annual-reminder"></p></div></article>
+        <article class="annual-question"><span class="question-label">今天送給自己的提問</span><p id="annual-question"></p></article>
+      </div>
+    </section>
+
+    <section class="choose section-wrap" aria-labelledby="choose-heading">
+      <div class="section-heading"><p class="eyebrow dark">PICK YOUR MOMENT</p><h2 id="choose-heading">此刻，你想為自己補充哪一種能量？</h2><p class="section-intro">選一個最貼近現在心情的情境，聽聽專屬問候與歌曲。</p></div>
+      <div class="scenario-grid" id="scenario-list" role="group" aria-label="選擇生日能量情境"></div>
+      <div class="now-playing" aria-live="polite">
+        <div class="greeting-panel"><span class="panel-label">今日靈數問候</span><blockquote id="greeting"></blockquote><p id="guide"></p><p class="action-line" id="action-line"></p></div>
+        <div class="song-panel"><span class="playing-label"><span class="playing-dot"></span> NOW PLAYING</span><p class="song-context" id="song-context"></p><h3 id="song-title"></h3><p class="song-artist" id="song-artist"></p><p class="song-reason" id="song-reason"></p><div class="button-row"><a id="play-link" class="button button-primary" target="_blank" rel="noopener noreferrer">▶ 點播歌曲</a><button id="copy-button" class="button button-light" type="button">複製祝福</button></div><p class="search-note">將開啟 YouTube 搜尋結果，請依喜好選擇版本。</p></div>
+      </div>
+    </section>
+
+    <section class="playlist section-wrap" aria-labelledby="playlist-heading">
+      <div class="playlist-heading"><div><p class="eyebrow dark">THE BIRTHDAY PLAYLIST</p><h2 id="playlist-heading">今日能量歌單</h2></div><p>每首歌都是一個陪伴你的角度<br>點選即可用 YouTube 搜尋</p></div>
+      <div class="track-list" id="track-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-wish" id="footer-wish"></p>
+    <p class="footer-sign" id="footer-signature"></p>
+    <button id="share-button" class="button button-primary" type="button">複製生日祝福・分享給好友</button>
+    <p class="footer-small">生命靈數作為正向自我覺察與祝福參考；願你自在地選擇自己的步調。</p>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <textarea id="copy-fallback" class="copy-fallback" aria-hidden="true" tabindex="-1"></textarea>
+</body>
+</html>
