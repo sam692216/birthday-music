@@ -3,65 +3,365 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#183d37">
-  <meta name="description" content="生日專屬的生命靈數能量祝福與音樂點播卡。">
-  <title>生日快樂｜生命靈數能量 DJ</title>
-  <link rel="preload" as="image" href="assets/hero.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="data.js" defer></script>
-  <script src="app.js" defer></script>
+  <meta name="theme-color" content="#f5f0e7">
+  <meta name="description" content="給 11月6日 壽星的生命靈數生日賀卡與 2026 流年 9 能量 DJ 點播歌單。">
+  <title>11月6日生日快樂｜生日數6 × 2026流年9</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #24352f;
+      --muted: #63716a;
+      --paper: #fbf8f1;
+      --cream: #f0e9db;
+      --green: #31594b;
+      --green-dark: #1f3d34;
+      --orange: #bf754d;
+      --gold: #d6ad76;
+      --line: #ddd2bf;
+      --white: #fffefa;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 85% 5%, rgba(214,173,118,.19), transparent 30rem),
+        linear-gradient(180deg, #f7f2e9, #f1ede4 55%, #f8f5ee);
+    }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    .page { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin: 24px auto 30px;
+      min-height: 480px;
+      border: 1px solid rgba(49,89,75,.16);
+      border-radius: 30px;
+      background: #e8ede3;
+      box-shadow: 0 20px 60px rgba(46,58,49,.08);
+    }
+    .hero-image {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 56%;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(247,242,233,.83) 0%, rgba(247,242,233,.68) 48%, rgba(247,242,233,.2) 100%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "9";
+      position: absolute;
+      z-index: 1;
+      right: 33%;
+      bottom: -150px;
+      color: rgba(49,89,75,.055);
+      font: 800 clamp(22rem, 38vw, 34rem)/1 Georgia, serif;
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(230px, .65fr);
+      align-items: center;
+      gap: 30px;
+      min-height: inherit;
+      padding: clamp(30px, 6vw, 72px);
+    }
+    .eyebrow {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+    }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      color: var(--green-dark);
+      font-size: clamp(2.15rem, 5.2vw, 4.3rem);
+      line-height: 1.16;
+      letter-spacing: .015em;
+    }
+    .hero-quote {
+      max-width: 700px;
+      margin: 20px 0 22px;
+      color: #4a5d51;
+      font-size: clamp(1.08rem, 2.3vw, 1.45rem);
+      line-height: 1.75;
+    }
+    .number-tag {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 7px 12px;
+      max-width: 100%;
+      padding: 10px 14px;
+      border: 1px solid rgba(49,89,75,.2);
+      border-radius: 12px;
+      background: rgba(255,254,250,.78);
+      font-size: .95rem;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+    .keywords { margin: 18px 0 0; color: var(--muted); line-height: 1.8; }
+    .blackboard {
+      justify-self: center;
+      width: min(100%, 290px);
+      padding: 28px 20px 24px;
+      border: 9px solid #987653;
+      border-radius: 13px;
+      background: #243c32;
+      box-shadow: 0 15px 25px rgba(37,48,40,.18), inset 0 0 0 1px rgba(255,255,255,.13);
+      color: #f6f0df;
+      text-align: center;
+      transform: rotate(1deg);
+    }
+    .blackboard p { margin: 0; font-family: "DFKai-SB", "KaiTi", serif; font-size: 1.3rem; font-weight: 700; line-height: 1.8; }
+    .blackboard small { display: block; margin-top: 19px; font: 700 .68rem/1.6 "Microsoft JhengHei", sans-serif; letter-spacing: .12em; }
+    .section { margin: 28px 0; padding: clamp(22px, 4vw, 42px); border: 1px solid var(--line); border-radius: 26px; background: rgba(255,254,250,.87); box-shadow: 0 12px 35px rgba(53,59,49,.045); }
+    .section-kicker { margin: 0 0 8px; color: var(--orange); font-size: .78rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { color: var(--green-dark); }
+    .section h2 { margin: 0 0 16px; font-size: clamp(1.45rem, 3.4vw, 2.1rem); }
+    .annual { max-width: 860px; margin: 0; color: #505e55; font-size: 1.06rem; line-height: 1.95; }
+    .annual-question { margin: 24px 0 0; padding: 18px 20px; border-left: 4px solid var(--orange); border-radius: 0 14px 14px 0; background: #f5efe4; font-size: 1.08rem; font-weight: 700; line-height: 1.75; }
+    .mode-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+    .mode {
+      min-height: 110px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: #fbf8f1;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: border-color .18s ease, background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+    .mode:hover { transform: translateY(-2px); border-color: var(--green); }
+    .mode:focus-visible, .action:focus-visible, .song-link:focus-visible { outline: 3px solid #bf754d; outline-offset: 3px; }
+    .mode[aria-pressed="true"] { border: 2px solid var(--green); background: #edf2e9; box-shadow: 0 7px 18px rgba(49,89,75,.09); }
+    .mode strong { display: block; color: var(--green-dark); font-size: 1.02rem; line-height: 1.5; }
+    .mode span { display: block; margin-top: 6px; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+    .now-playing { display: grid; grid-template-columns: 1.05fr .95fr; overflow: hidden; margin-top: 22px; border-radius: 20px; }
+    .reflection { padding: clamp(23px, 4vw, 36px); background: var(--green); color: white; }
+    .reflection-label, .playing-label { font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
+    .reflection h3 { margin: 17px 0 12px; font-size: clamp(1.28rem, 2.7vw, 1.85rem); line-height: 1.6; }
+    .reflection p { margin: 0; color: rgba(255,255,255,.88); line-height: 1.8; }
+    .track { padding: clamp(23px, 4vw, 36px); background: #f3ecdf; }
+    .playing-label { color: var(--orange); }
+    .track h3 { margin: 16px 0 8px; color: var(--green-dark); font-size: 1.6rem; }
+    .track p { min-height: 3.4em; color: #5e675f; line-height: 1.75; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; }
+    .action { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 11px 17px; border: 1px solid transparent; border-radius: 999px; background: var(--orange); color: white; font-weight: 800; text-decoration: none; cursor: pointer; touch-action: manipulation; transition: transform .16s ease, background-color .16s ease; }
+    .action:hover { transform: translateY(-1px); background: #a95f3c; }
+    .action.secondary { border-color: #d5c2a7; background: var(--white); color: var(--green-dark); }
+    .status { min-height: 1.5em; margin: 8px 0 0; color: var(--green); font-size: .9rem; }
+    .playlist { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; padding: 0; margin: 20px 0 0; list-style: none; }
+    .song-link { display: flex; min-height: 62px; align-items: center; gap: 13px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 14px; background: #fcfaf5; text-decoration: none; transition: border-color .18s ease, background-color .18s ease; }
+    .song-link:hover { border-color: var(--green); background: #f1f3eb; }
+    .song-number { flex: 0 0 28px; color: var(--orange); font: 800 1.05rem Georgia,serif; }
+    .song-text strong { display: block; color: var(--green-dark); line-height: 1.45; }
+    .song-text small { display: block; margin-top: 3px; color: var(--muted); line-height: 1.4; }
+    .note { margin: 18px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.75; }
+    .closing { margin: 28px 0 44px; padding: 26px clamp(20px,4vw,38px); border-radius: 22px; background: #e6ebe1; color: #385346; line-height: 1.9; }
+    .closing strong { color: var(--green-dark); }
+    footer { padding: 0 0 32px; color: #7c817a; font-size: .82rem; text-align: center; }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr) 230px; gap: 20px; padding: 36px; }
+      .blackboard { width: 225px; padding: 23px 15px; }
+      .blackboard p { font-size: 1.13rem; }
+      .hero::after { right: 24%; }
+    }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 24px, 560px); }
+      .hero { margin-top: 12px; border-radius: 22px; }
+      .hero-image { object-position: 67% center; }
+      .hero::before { background: linear-gradient(180deg, rgba(247,242,233,.78), rgba(247,242,233,.63)); }
+      .hero-grid { grid-template-columns: 1fr; gap: 23px; padding: 28px 22px; }
+      .hero::after { right: -25px; bottom: -90px; font-size: 20rem; }
+      .hero-copy { text-align: center; }
+      .hero-quote { margin-inline: auto; }
+      .number-tag { justify-content: center; }
+      .blackboard { width: min(100%, 270px); }
+      .mode-grid { grid-template-columns: 1fr; gap: 10px; }
+      .mode { min-height: 76px; padding: 14px 16px; }
+      .now-playing { grid-template-columns: 1fr; }
+      .playlist { grid-template-columns: 1fr; }
+      .track p { min-height: auto; }
+      .section { border-radius: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="生命靈數生日能量 DJ 首頁"><span class="brand-mark">AF</span><span>阿福教練・生日能量 DJ</span></a>
-    <span class="top-note">一份祝福，陪你開啟新的一歲</span>
-  </header>
-
-  <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <img id="hero-image" class="hero-image" src="assets/hero.png" alt="">
-      <div class="hero-shade"></div>
-      <div class="hero-copy">
-        <p class="eyebrow" id="date-eyebrow"></p>
-        <p class="number-label" id="number-label"></p>
-        <h1 id="hero-title"></h1>
-        <div class="keyword-row"><span id="birthday-keywords"></span><span class="keyword-divider">×</span><span id="flow-keywords"></span></div>
-        <div class="blackboard"><span class="board-kicker">TODAY’S BIRTHDAY NOTE</span><p id="board-quote"></p></div>
-      </div>
-      <div class="hero-signature" id="signature"></div>
-      <div class="hero-index" aria-hidden="true"><span>ENERGY</span><strong id="flow-number"></strong></div>
-    </section>
-
-    <section class="annual section-wrap" aria-labelledby="annual-heading">
-      <div class="section-heading"><p class="eyebrow dark">YOUR YEAR, YOUR RHYTHM</p><h2 id="annual-heading">今年，為自己留一個新的可能</h2></div>
-      <div class="annual-grid">
-        <article class="annual-note"><span class="note-icon" aria-hidden="true">✦</span><div><h3>年度提醒</h3><p id="annual-reminder"></p></div></article>
-        <article class="annual-question"><span class="question-label">今天送給自己的提問</span><p id="annual-question"></p></article>
+  <main class="page">
+    <section class="hero" aria-labelledby="birthday-title">
+      <img class="hero-image" src="hero.png" alt="初冬暮色下的溫馨長餐桌，暖黃燭光、棉花乾燥花與熱果茶，象徵感恩斷捨離與九年週期圓滿昇華。" fetchpriority="high">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">NOVEMBER 06 · ELEGANT RELEASE FOR NEW LIFE</p>
+          <h1 id="birthday-title">11/06 壽星<br>生日快樂</h1>
+          <p class="hero-quote">「真正的圓滿，是懂得溫柔放下不再需要的包袱。」</p>
+          <div class="number-tag">
+            <span>生日數 6（照顧・責任・溫暖・付出）</span>
+            <span aria-hidden="true">×</span>
+            <span>2026 流年 9（整理・完成・放下・昇華）</span>
+          </div>
+          <p class="keywords">生日數能量：照顧・責任・溫暖・付出<br>流年 9 主題：整理・完成・放下・昇華</p>
+        </div>
+        <aside class="blackboard" aria-label="阿福教練生日祝福立牌">
+          <p>真正的圓滿，<br>是懂得溫柔放下<br>不再需要的重量。</p>
+          <small>阿福教練<br>LIFE NUMEROLOGY COACH</small>
+        </aside>
       </div>
     </section>
 
-    <section class="choose section-wrap" aria-labelledby="choose-heading">
-      <div class="section-heading"><p class="eyebrow dark">PICK YOUR MOMENT</p><h2 id="choose-heading">此刻，你想為自己補充哪一種能量？</h2><p class="section-intro">選一個最貼近現在心情的情境，聽聽專屬問候與歌曲。</p></div>
-      <div class="scenario-grid" id="scenario-list" role="group" aria-label="選擇生日能量情境"></div>
+    <!-- 深度流年專題區塊 -->
+    <section class="section" aria-labelledby="year-heading">
+      <p class="section-kicker">A YEAR OF SPECIAL MASTERY</p>
+      <h2 id="year-heading">清理心靈行李箱，向過去致敬，輕裝迎接下個九年</h2>
+      <p class="annual">今年走入流年 9 的【九年大週期圓滿期】。你習慣把所有人的責任扛在自己身上、常常委屈自己顧全大局，但今年是宇宙為你安排的「大掃除時間」。向過去努力打拼的自己深深鞠躬說聲謝謝；對那些已經不再適合的人際牽絆、過期執念溫柔道別。唯有把雙手空出來，明年全新的九年盛大篇章才能為你裝滿新的精彩！</p>
+      <p class="annual-question">年度提問｜「有哪些背負了很久的內疚與執念，現在的我其實已經可以安心放下了？」</p>
+    </section>
+
+    <!-- 能量 DJ 情境切換區塊 -->
+    <section class="section" aria-labelledby="dj-heading">
+      <p class="section-kicker">YOUR ENERGY DJ · 6 號人的流年 9 能量點播站</p>
+      <h2 id="dj-heading">當甘願付出的 6 號人，走進斷捨離的流年 9</h2>
+      <p class="annual">身為天生充滿愛與責任感、總是捨不得別人受苦的 6 號人，你的弱點就是「太念舊、太容易心軟、太害怕放手」；然而今年走入「流年 9」的週期大收尾，宇宙要你學會的功課是「優雅放手」。當習慣過度承擔的你，遇上必須斷捨離的年份，容易陷入內疚與焦慮。今天 DJ 特別為 6 號人的你精選流年 9 昇華歌單——溫柔卸下你的重擔，原諒過去、擁抱圓滿，輕盈邁向新生！</p>
+      <div class="mode-grid" role="group" aria-label="選擇今天的心情情境">
+        <button class="mode" type="button" data-mode="release" aria-pressed="true">
+          <strong>🍃 溫柔放手・卸下重擔</strong><span>允許自己不再拯救所有人，把自由還給彼此。</span>
+        </button>
+        <button class="mode" type="button" data-mode="gratitude" aria-pressed="false">
+          <strong>🕊️ 感恩道別・圓滿告別</strong><span>留下最珍貴的成長養分，向過期牽絆說再見。</span>
+        </button>
+        <button class="mode" type="button" data-mode="dawn" aria-pressed="false">
+          <strong>🌅 輕裝啟航・擁抱新局</strong><span>把最好的自己，留給明年全新的九年大運。</span>
+        </button>
+      </div>
+
       <div class="now-playing" aria-live="polite">
-        <div class="greeting-panel"><span class="panel-label">今日靈數問候</span><blockquote id="greeting"></blockquote><p id="guide"></p><p class="action-line" id="action-line"></p></div>
-        <div class="song-panel"><span class="playing-label"><span class="playing-dot"></span> NOW PLAYING</span><p class="song-context" id="song-context"></p><h3 id="song-title"></h3><p class="song-artist" id="song-artist"></p><p class="song-reason" id="song-reason"></p><div class="button-row"><a id="play-link" class="button button-primary" target="_blank" rel="noopener noreferrer">▶ 點播歌曲</a><button id="copy-button" class="button button-light" type="button">複製祝福</button></div><p class="search-note">將開啟 YouTube 搜尋結果，請依喜好選擇版本。</p></div>
+        <div class="reflection">
+          <span class="reflection-label">今日靈數問候</span>
+          <h3 id="question">「那份讓我感到沉重與委屈的責任，我今天能不能溫柔地對自己說『我已經做得很好了』？」</h3>
+          <p id="guidance">善待別人之前，先學會善待自己。放下不屬於你的功課，不是無情，而是懂得尊重彼此的生命歷程。</p>
+        </div>
+        <div class="track">
+          <span class="playing-label">NOW PLAYING · 今日點播</span>
+          <h3 id="song">〈玫瑰少年〉</h3>
+          <p id="reason">蔡依林｜以包容與尊重的深刻力量撫慰受傷的心，陪伴 6 號人溫柔接納自己的脆弱，勇敢卸下枷鎖。</p>
+          <div class="actions">
+            <a id="play" class="action" href="https://www.youtube.com/results?search_query=%E8%94%A1%E4%BE%9D%E6%9E%97%20%E7%8E%AB%E7%91%B0%E5%B0%91%E5%B9%B4%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer">▶ 點播歌曲</a>
+            <button id="copy" class="action secondary" type="button">複製祝福</button>
+          </div>
+          <p id="copy-status" class="status" role="status" aria-live="polite"></p>
+        </div>
       </div>
     </section>
 
-    <section class="playlist section-wrap" aria-labelledby="playlist-heading">
-      <div class="playlist-heading"><div><p class="eyebrow dark">THE BIRTHDAY PLAYLIST</p><h2 id="playlist-heading">今日能量歌單</h2></div><p>每首歌都是一個陪伴你的角度<br>點選即可用 YouTube 搜尋</p></div>
-      <div class="track-list" id="track-list"></div>
+    <!-- 流年課堂激勵與歡唱歌單 -->
+    <section class="section" aria-labelledby="playlist-heading">
+      <p class="section-kicker">LIFE NUMBER 9 · CLASSROOM PLAYLIST</p>
+      <h2 id="playlist-heading">9 號人課堂激勵與歡唱歌單（給 6 號人的流年 9 圓滿歌單）</h2>
+      <p class="annual">這份歌單來自阿福教練生命靈數課堂中，專為「博愛昇華、感恩整理、釋放包袱與圓滿總結」所調配的經典曲目。習慣照顧他人的 6 號壽星，在進入流年 9 的大收官考場時，聽這 8 首歌，就像在暖冬泡一場溫泉大澡——洗盡鉛華、溫柔放手，輕裝迎接下一個黃金九年！</p>
+      <ol class="playlist">
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E6%BB%85%E7%81%AB%E5%99%A8%20Fire%20EX.%20%E5%B3%B6%E5%B6%BC%E5%A4%A9%E5%85%89%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">01</span><span class="song-text"><strong>島嶼天光</strong><small>滅火器 Fire EX.｜願景開場・以集體希望與博愛胸襟帶出人道關懷，看見黑夜後的破曉晨光（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E7%BE%85%E5%A4%A7%E4%BD%91%20%E7%BE%8E%E9%BA%97%E5%B3%B6%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">02</span><span class="song-text"><strong>美麗島</strong><small>羅大佑｜人文省思・用在地人文視角引導回顧生命足跡，感受土地與生命的深層給予（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E8%94%A1%E4%BE%9D%E6%9E%97%20%E7%8E%AB%E7%91%B0%E5%B0%91%E5%B9%B4%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">03</span><span class="song-text"><strong>玫瑰少年</strong><small>蔡依林｜尊重包容・將同理與正義感延伸到擁抱自己的不完美，溫柔接納生命每個階段（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E5%BC%B5%E6%83%A0%E5%A6%B9%20%E5%BD%A9%E8%99%B9%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">04</span><span class="song-text"><strong>彩虹</strong><small>張惠妹｜接納支持・溫暖包容的無條件支持，適合學會放下批判與執著（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E4%BA%94%E6%9C%88%E5%A4%A9%20%E6%86%A8%E4%BA%BA%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">05</span><span class="song-text"><strong>憨人</strong><small>五月天｜純粹堅持・不計較得失的憨人精神，把一生所學的大愛化為踏實行善（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E7%9B%A7%E5%BB%A3%E4%BB%B2%20%E9%AD%9A%E4%BB%94%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">06</span><span class="song-text"><strong>魚仔</strong><small>盧廣仲｜在乎的人・將心中的大愛收回身邊最珍視的人，帶著感恩向過去溫柔告別（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E5%BC%B5%E9%9B%A8%E7%94%9F%20%E6%88%91%E7%9A%84%E6%9C%AA%E4%BE%86%E4%B8%8D%E6%98%AF%E5%A4%A2%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">07</span><span class="song-text"><strong>我的未來不是夢</strong><small>張雨生｜理想落地・把過去九年的努力化為前進的底氣，篤定迎接全新的生命起點（YouTube 搜尋）</small></span></a></li>
+        <li><a class="song-link" href="https://www.youtube.com/results?search_query=%E7%BE%A4%E6%98%9F%20%E6%98%8E%E5%A4%A9%E6%9C%83%E6%9B%B4%E5%A5%BD%20%E5%AE%98%E6%96%B9%20MV" target="_blank" rel="noopener noreferrer"><span class="song-number">08</span><span class="song-text"><strong>明天會更好</strong><small>群星｜大合唱收束・以共同的祝福為舊階段畫上圓滿句點，昂首闊步迎向全新九年（YouTube 搜尋）</small></span></a></li>
+      </ol>
+      <p class="note">歌單依《生命靈數9號人_激勵九首與歡唱點播歌單》整理。點播連結均為 YouTube 官方影音搜尋結果；播放時請依授課場地與著作權規範使用。</p>
     </section>
+
+    <section class="closing">
+      <strong>🎉 祝 11/06 的你生日快樂！</strong><br>
+      願你帶著滿腹智慧與清明，從容優雅地為舊階段畫上圓滿句點。<br>
+      👉 11/06 壽星快來留言【🕊️】！為新的一歲許下最棒的願望！<br>
+      <span>#11月6日生日快樂 #生命靈數 #生日數6 #流年9 #阿福教練</span>
+    </section>
+    <footer>阿福教練｜生命靈數能量提醒・生日 DJ 點播站</footer>
   </main>
 
-  <footer class="footer">
-    <p class="footer-wish" id="footer-wish"></p>
-    <p class="footer-sign" id="footer-signature"></p>
-    <button id="share-button" class="button button-primary" type="button">複製生日祝福・分享給好友</button>
-    <p class="footer-small">生命靈數作為正向自我覺察與祝福參考；願你自在地選擇自己的步調。</p>
-  </footer>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <textarea id="copy-fallback" class="copy-fallback" aria-hidden="true" tabindex="-1"></textarea>
+  <script>
+    const scenarios = {
+      "release": {
+            "question": "「那份讓我感到沉重與委屈的責任，我今天能不能溫柔地對自己說『我已經做得很好了』？」",
+            "guidance": "善待別人之前，先學會善待自己。放下不屬於你的功課，不是無情，而是懂得尊重彼此的生命歷程。",
+            "song": "〈玫瑰少年〉",
+            "reason": "蔡依林｜以包容與尊重的深刻力量撫慰受傷的心，陪伴 6 號人溫柔接納自己的脆弱，勇敢卸下枷鎖。",
+            "url": "https://www.youtube.com/results?search_query=%E8%94%A1%E4%BE%9D%E6%9E%97%20%E7%8E%AB%E7%91%B0%E5%B0%91%E5%B9%B4%20%E5%AE%98%E6%96%B9%20MV",
+            "blessing": "11/06 生日快樂！身為溫暖的心靈照料者，願你在流年 9 的沉澱中學會心疼自己，卸下重擔，找回最初輕盈自在的靈魂！"
+      },
+      "gratitude": {
+            "question": "「對於那些已經完成陪伴使命的人事物，我想用怎樣的感謝與祝福溫和道別？」",
+            "guidance": "道別不需要眼淚與爭吵。帶著感恩的心情將回憶封存在心底，讓空間空出來，你才能迎接全新階段的相逢。",
+            "song": "〈魚仔〉",
+            "reason": "盧廣仲｜深情治癒的旋律將思念化為最純粹的祝福，陪伴 6 號人優雅為舊旅程畫下圓滿句點。",
+            "url": "https://www.youtube.com/results?search_query=%E7%9B%A7%E5%BB%A3%E4%BB%B2%20%E9%AD%9A%E4%BB%94%20%E5%AE%98%E6%96%B9%20MV",
+            "blessing": "11/06 生日快樂！願你的心寬廣如海，走過風雨依然保有慈悲與溫暖，在圓滿告別中迎接更加澄澈明亮的明天！"
+      },
+      "dawn": {
+            "question": "「放下了過去的沉重之後，我最期待以怎樣的全新姿態迎接明年的自己？」",
+            "guidance": "舊的結束，正是為了更高維度的開始。當你心中不再有執念，你的腳步會前所未有的輕盈，眼前將是一片開闊花海。",
+            "song": "〈我的未來不是夢〉",
+            "reason": "張雨生｜把過去九年的累積化為前進的篤定信念，激勵 6 號人重拾自信、滿懷希望邁向新紀元！",
+            "url": "https://www.youtube.com/results?search_query=%E5%BC%B5%E9%9B%A8%E7%94%9F%20%E6%88%91%E7%9A%84%E6%9C%AA%E4%BE%86%E4%B8%8D%E6%98%AF%E5%A4%A2%20%E5%AE%98%E6%96%B9%20MV",
+            "blessing": "11/06 生日快樂！願你帶著九年提煉出的大智慧，輕裝上陣、神采飛揚，開啟生命下一段璀璨絢爛的輝煌大章！"
+      }
+};
+
+    const byId = id => document.getElementById(id);
+    let selectedMode = 'release';
+    const modeButtons = [...document.querySelectorAll('.mode[data-mode]')];
+
+    function chooseMode(mode) {
+      const scenario = scenarios[mode];
+      if (!scenario) return;
+      selectedMode = mode;
+      modeButtons.forEach(button => {
+        const selected = button.dataset.mode === mode;
+        button.setAttribute('aria-pressed', String(selected));
+      });
+      byId('question').textContent = scenario.question;
+      byId('guidance').textContent = scenario.guidance;
+      byId('song').textContent = scenario.song;
+      byId('reason').textContent = scenario.reason;
+      byId('play').href = scenario.url;
+      byId('copy-status').textContent = '';
+    }
+
+    modeButtons.forEach(button => {
+      button.addEventListener('click', () => chooseMode(button.dataset.mode));
+    });
+
+    byId('copy').addEventListener('click', async () => {
+      const blessing = scenarios[selectedMode].blessing;
+      try {
+        await navigator.clipboard.writeText(blessing);
+        byId('copy-status').textContent = '祝福文案已複製，可以貼到 LINE 或 FB 分享。';
+      } catch {
+        window.prompt('請複製以下生日祝福：', blessing);
+      }
+    });
+  </script>
 </body>
 </html>
