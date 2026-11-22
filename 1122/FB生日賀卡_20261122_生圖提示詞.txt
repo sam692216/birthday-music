@@ -1,0 +1,24 @@
+Use case: ads-marketing. Create ONE finished Facebook birthday greeting card for November 22, in Traditional Chinese. Portrait aspect ratio 4:5. This is the final designed image with all typography included, not a blank background or a mockup.
+
+Art direction: sophisticated Kinfolk editorial lifestyle photography, warm soft early winter morning sunlight, cream linen, light oak, sage green, gentle brass details. Calm, caring and elegant. A real naturally photographed tabletop, slightly elevated first person viewpoint. Right half: a small upright wooden-framed matte charcoal blackboard, front-facing and large enough for highly legible handwriting, a warm ceramic tea cup with subtle steam, open blank journal, brass fountain pen, delicate eucalyptus sprig. Natural realistic materials and restrained objects. Left half: calm cream negative space used for beautiful spacious graphic typography. The blackboard and left text should not overlap. Keep generous safe margins, clear hierarchy, good contrast and legibility at mobile size.
+
+Exact text on left, in dark warm brown, elegant crisp Traditional Chinese serif typography:
+small: "11 月 22 日"
+large main headline split into two lines: "生日" / "快樂"
+small beneath: "生日數 22（合4）"
+small next line: "2026 流年 7"
+subtle small English kicker: "A MOMENT FOR YOURSELF"
+
+On the right blackboard in clearly readable white chalk Traditional Chinese handwriting, write verbatim:
+"在彼此靠近裡，"
+"也留一段安靜"
+"給自己。"
+Beneath the quote, smaller:
+"阿福教練"
+"LIFE NUMEROLOGY COACH"
+
+At bottom, set a short legible dark-brown birthday blessing across a quiet cream area, two lines:
+"願你的細膩被珍惜，"
+"也在安靜裡找到更篤定的方向。"
+
+The visual theme is birthday number 22 reduced to 4 (care, cooperation, stability) meeting annual theme 7 (reflection, quiet understanding); convey this through gentle composition, not mystical symbols. Render ALL Chinese as Traditional Chinese verbatim with correct strokes. Keep text sharp. No people, no decorative random letters, no extra wording, no fake logo, no watermarks, no balloons or glitter, no visual clutter. High quality print-like editorial finish.
