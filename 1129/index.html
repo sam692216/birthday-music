@@ -46,52 +46,57 @@
       position: relative;
       overflow: hidden;
       border-radius: 28px;
+      border: 1px solid var(--line);
       box-shadow: 0 16px 36px rgba(0,0,0,.08);
-      background: #ded8ce;
-    }
-    .hero-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: saturate(1.05) contrast(1.02);
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(248,245,240,.88) 0%, rgba(248,245,240,.74) 48%, rgba(248,245,240,.62) 100%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: "11";
-      position: absolute;
-      right: 20%;
-      bottom: -60px;
-      font: 900 clamp(13rem, 26vw, 24rem)/.8 var(--font-serif);
-      color: rgba(0,0,0,.05);
-      letter-spacing: -.06em;
-      pointer-events: none;
-      user-select: none;
+      background: linear-gradient(145deg, #fbf9f5 0%, #f2ece2 100%);
     }
     .hero-grid {
       position: relative;
-      z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 32px;
-      align-items: center;
-      padding: clamp(32px, 5vw, 56px);
+      grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+      align-items: stretch;
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(32px, 5vw, 52px);
+    }
+    .hero-copy::after {
+      content: "11";
+      position: absolute;
+      right: 16px;
+      bottom: -36px;
+      font: 900 clamp(10rem, 18vw, 15rem)/.8 var(--font-serif);
+      color: rgba(43,59,52,.045);
+      letter-spacing: -.06em;
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
+    }
+    .hero-media {
+      position: relative;
+      min-height: 420px;
+      background: #ded8ce;
+      overflow: hidden;
+    }
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 82% center;
+      filter: saturate(1.04) contrast(1.02);
     }
     .eyebrow {
       display: inline-block;
       margin: 0 0 12px;
       color: var(--accent);
-      font-size: .84rem;
+      font-size: .82rem;
       font-weight: 800;
-      letter-spacing: .15em;
+      letter-spacing: .14em;
     }
     h1 {
       margin: 0;
@@ -124,8 +129,9 @@
       display: inline-flex;
       align-items: center;
       padding: 5px 13px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.92);
       box-shadow: 0 2px 6px rgba(0,0,0,.04);
     }
     .keywords {
@@ -133,35 +139,6 @@
       color: var(--muted);
       font-size: .86rem;
       line-height: 1.65;
-    }
-    .blackboard {
-      box-sizing: border-box;
-      width: 250px;
-      padding: 26px 18px;
-      border: 4px solid #5c4a36;
-      border-radius: 14px;
-      background: #222824;
-      color: #edeae2;
-      box-shadow: 0 12px 24px rgba(0,0,0,.15);
-      text-align: center;
-      justify-self: end;
-    }
-    .blackboard p {
-      margin: 0;
-      font-family: var(--font-serif);
-      font-size: 1.18rem;
-      line-height: 1.85;
-      letter-spacing: .03em;
-    }
-    .blackboard small {
-      display: block;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px dashed rgba(255,255,255,.24);
-      color: #b5afa6;
-      font-size: .76rem;
-      line-height: 1.5;
-      letter-spacing: .08em;
     }
     .section {
       margin-top: 28px;
@@ -250,22 +227,19 @@
     .closing strong { color: var(--primary-dark); }
     footer { padding: 0 0 32px; color: var(--muted); font-size: .82rem; text-align: center; }
     @media (max-width: 860px) {
-      .hero-grid { grid-template-columns: minmax(0,1fr) 230px; gap: 20px; padding: 36px; }
-      .blackboard { width: 225px; padding: 23px 15px; }
-      .blackboard p { font-size: 1.13rem; }
-      .hero::after { right: 24%; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(240px, 0.85fr); }
+      .hero-copy { padding: 34px 28px; }
     }
     @media (max-width: 700px) {
       .page { width: min(100% - 24px, 560px); }
       .hero { margin-top: 12px; border-radius: 22px; }
-      .hero-image { object-position: 67% center; }
-      .hero::before { background: linear-gradient(180deg, rgba(248,245,240,.88), rgba(248,245,240,.73)); }
-      .hero-grid { grid-template-columns: 1fr; gap: 23px; padding: 28px 22px; }
-      .hero::after { right: -25px; bottom: -90px; font-size: 20rem; }
-      .hero-copy { text-align: center; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { padding: 28px 22px; text-align: center; }
+      .hero-copy::after { right: -10px; bottom: -28px; font-size: 11rem; }
       .hero-quote { margin-inline: auto; }
       .number-tag { justify-content: center; }
-      .blackboard { width: min(100%, 270px); }
+      .hero-media { min-height: 360px; aspect-ratio: 4 / 3; }
+      .hero-image { object-position: 80% 42%; }
       .mode-grid { grid-template-columns: 1fr; gap: 10px; }
       .mode { min-height: 76px; padding: 14px 16px; }
       .now-playing { grid-template-columns: 1fr; }
@@ -281,10 +255,9 @@
 <body>
   <main class="page">
     <section class="hero" aria-labelledby="birthday-title">
-      <img class="hero-image" src="hero.png" alt="秋末晨光灑在淺橡木桌與米白亞麻桌巾上，皮革旅行手帳、黃銅羅盤、手沖咖啡與尤加利葉，象徵 11/2 靈感導師展開流年 5 的自由探索。" fetchpriority="high">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">NOVEMBER 29 · INTUITIVE EXPLORER'S HORIZON</p>
+          <p class="eyebrow">NOVEMBER 29 · INTUITIVE EXPLORER</p>
           <h1 id="birthday-title">11/29 壽星<br>生日快樂</h1>
           <p class="hero-quote">「把敏銳的直覺，化作勇敢冒險的自由翅膀。」</p>
           <div class="number-tag">
@@ -294,10 +267,9 @@
           </div>
           <p class="keywords">生日數能量：靈感導師・直覺共鳴・細膩傾聽・溫柔連結<br>流年 5 主題：自由・探索・突破・冒險</p>
         </div>
-        <aside class="blackboard" aria-label="阿福教練生日祝福立牌">
-          <p>把敏銳的直覺，<br>化作勇敢冒險的<br>自由翅膀。</p>
-          <small>阿福教練<br>LIFE NUMEROLOGY COACH</small>
-        </aside>
+        <div class="hero-media">
+          <img class="hero-image" src="hero.png" alt="秋末晨光灑在淺橡木桌與米白亞麻桌巾上，黑板寫著「把敏銳的直覺，化作勇敢冒險的自由翅膀」，搭配皮革旅行手帳、黃銅羅盤、手沖咖啡與尤加利葉。" fetchpriority="high">
+        </div>
       </div>
     </section>
 
